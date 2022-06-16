@@ -1,0 +1,17 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.backgroundCard {
+  width: 4%;
+  filter: blur(0.3rem) grayscale(90%);
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  animation: rotate 5s linear infinite;
+  z-index: 0;
+}
