@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer } from 'react';
 import styled from '@emotion/styled';
 import { createDeck, drawCard } from '../_Api/api';
 import { Button, Box, Modal as MuiModal, Typography } from '@mui/material';
-import { ICard, IGameState, IRound } from '../_Api/types';
+import { IGameState } from '../_Api/types';
 import { compareCards } from './gameLogic';
 import { SideCardsPanel } from './SideCardsPanel';
 import { colors } from '../styles/colors';
