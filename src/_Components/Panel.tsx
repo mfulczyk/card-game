@@ -332,7 +332,10 @@ export const Panel = () => {
           }}
         >
           Score
-          <span style={{ letterSpacing: '0' }}> {score.toFixed(1)}</span>
+          <span style={{ letterSpacing: '0', fontSize: '2rem' }}>
+            {' '}
+            {score.toFixed(1)}
+          </span>
         </Typography>
         <Typography
           component="p"
@@ -345,7 +348,10 @@ export const Panel = () => {
           }}
         >
           Round
-          <span style={{ letterSpacing: '0' }}> {rounds[0].round}</span>
+          <span style={{ letterSpacing: '0', fontSize: '2rem' }}>
+            {' '}
+            {rounds[0].round}
+          </span>
         </Typography>
       </Box>
 
