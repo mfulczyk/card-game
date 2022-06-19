@@ -146,7 +146,7 @@ export const Panel = () => {
   };
 
   const handleOpen = () => {
-    // setOpen(true);
+    setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
