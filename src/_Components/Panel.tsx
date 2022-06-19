@@ -15,6 +15,7 @@ import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import StartIcon from '@mui/icons-material/Start';
 import { RoundHistory } from './RoundHistory';
 import './Panel.css';
+import { clamp } from 'lodash';
 
 const Wrapper = styled(Box)`
   width: 100%;
@@ -146,7 +147,7 @@ export const Panel = () => {
   };
 
   const handleOpen = () => {
-    setOpen(true);
+    // setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
@@ -281,6 +282,7 @@ export const Panel = () => {
               onClick={() => {
                 setHigherCard(true);
               }}
+              style={{ marginBottom: '1rem', marginTop: 0 }}
               variant={!higherCard ? 'contained' : 'outlined'}
             >
               <ArrowCircleUpIcon sx={{ mr: 2 }} />
@@ -289,6 +291,7 @@ export const Panel = () => {
             <StyledButton
               disabled={cards?.length > 29 || isLoading}
               onClick={() => setHigherCard(false)}
+              style={{ marginBottom: '1rem', marginTop: 0 }}
               variant={higherCard ? 'contained' : 'outlined'}
             >
               <ArrowCircleDownIcon sx={{ mr: 2 }} />
@@ -298,6 +301,7 @@ export const Panel = () => {
           <img
             alt={`card ${cards.at(0)?.value} ${cards.at(0)?.suit}`}
             src={cards.at(0)?.image}
+            style={{ height: 'calc(100vh - 600px)', maxHeight: '350px' }}
           />
         </Box>
       )}
