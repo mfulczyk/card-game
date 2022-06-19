@@ -15,7 +15,6 @@ import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import StartIcon from '@mui/icons-material/Start';
 import { RoundHistory } from './RoundHistory';
 import './Panel.css';
-import { clamp } from 'lodash';
 
 const Wrapper = styled(Box)`
   width: 100%;
