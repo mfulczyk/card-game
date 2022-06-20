@@ -35,27 +35,26 @@ export interface IGameState {
   score: number;
 }
 
-export type setDeckIdAction = {
+export interface setDeckIdAction {
   type: 'SET_DECK_ID';
   payload: string;
-};
+}
 
-export type setCardsAction = {
+export interface setCardsAction {
   type: 'SET_CARDS';
   payload: ICard;
-};
+}
 
-export type setRoundAction = {
+export interface setRoundAction {
   type: 'SET_ROUND';
-  payload: IRound;
-};
+}
 
-export type setScoreAction = {
+export interface setScoreAction {
   type: 'SET_SCORE';
   payload: boolean;
-};
+}
 
-export type loadGameAction = {
+export interface loadGameAction {
   type: 'LOAD_GAME';
   payload: {
     deckId: string;
@@ -63,4 +62,11 @@ export type loadGameAction = {
     score: number;
     cards: ICard[];
   };
-};
+}
+
+export type reducerAction =
+  | setDeckIdAction
+  | setCardsAction
+  | setRoundAction
+  | setScoreAction
+  | loadGameAction;

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer } from 'react';
 import styled from '@emotion/styled';
 import { createDeck, drawCard } from '../_Api/api';
 import { Button, Box, Modal as MuiModal, Typography } from '@mui/material';
-import { IGameState } from '../_Api/types';
+import { IGameState, reducerAction } from '../_Api/types';
 import { compareCards } from './gameLogic';
 import { SideCardsPanel } from './SideCardsPanel';
 import { colors } from '../styles/colors';
@@ -59,29 +59,24 @@ const initialState: IGameState = {
   score: 0,
 };
 
-const gameActionTypes = {
-  setDeckId: 'SET_DECK_ID',
-  setCards: 'SET_CARDS',
-  setRound: 'SET_ROUND',
-  setScore: 'SET_SCORE',
-  loadGame: 'LOAD_GAME',
-};
-
-function gameReducer(prevState = initialState, action: any): IGameState {
+function gameReducer(
+  prevState = initialState,
+  action: reducerAction
+): IGameState {
   switch (action.type) {
-    case gameActionTypes.setCards:
+    case 'SET_CARDS':
       return {
         ...prevState,
         cards: [action.payload, ...prevState.cards],
       };
 
-    case gameActionTypes.setDeckId:
+    case 'SET_DECK_ID':
       return {
         ...prevState,
         deckId: action.payload,
       };
 
-    case gameActionTypes.setRound:
+    case 'SET_ROUND':
       const roundInfo = {
         round: prevState.rounds[0].round + 1,
         score: prevState.score,
@@ -91,7 +86,7 @@ function gameReducer(prevState = initialState, action: any): IGameState {
         rounds: [roundInfo, ...prevState.rounds],
       };
 
-    case gameActionTypes.setScore:
+    case 'SET_SCORE':
       const result = compareCards(prevState.cards[0], prevState.cards[1]);
 
       if (result === action.payload) {
@@ -106,7 +101,7 @@ function gameReducer(prevState = initialState, action: any): IGameState {
         };
       }
 
-    case gameActionTypes.loadGame:
+    case 'LOAD_GAME':
       return {
         deckId: action.payload.deckId,
         cards: action.payload.cards,
@@ -172,7 +167,7 @@ export const Panel = () => {
   const loadGame = () => {
     const gameData = JSON.parse(localStorage.getItem('gameData')!);
     dispatch({
-      type: gameActionTypes.loadGame,
+      type: 'LOAD_GAME',
       payload: gameData,
     });
     handleClose();
@@ -189,7 +184,7 @@ export const Panel = () => {
     const cardData = await drawCard(deckId);
 
     dispatch({
-      type: gameActionTypes.setCards,
+      type: 'SET_CARDS',
       payload: cardData.cards[0],
     });
 
@@ -204,7 +199,7 @@ export const Panel = () => {
     setIsLoading(true);
     const deckData = await createDeck();
     dispatch({
-      type: gameActionTypes.setDeckId,
+      type: 'SET_DECK_ID',
       payload: deckData.deck_id,
     });
 
@@ -219,12 +214,12 @@ export const Panel = () => {
     await draftCard(deckId);
 
     dispatch({
-      type: gameActionTypes.setScore,
+      type: 'SET_SCORE',
       payload: higherCard,
     });
 
     dispatch({
-      type: gameActionTypes.setRound,
+      type: 'SET_ROUND',
     });
   };
 
