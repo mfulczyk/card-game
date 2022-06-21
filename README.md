@@ -9,6 +9,12 @@ If you guess correctly you get a point!
 
 Don't forget to save your progress!
 
+To do: 
+- tests!
+- style refactoring
+- components refactoring
+- error handling
+
 ## Available Scripts
 
 In the project directory, you can run:
